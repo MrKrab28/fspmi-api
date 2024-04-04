@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'no_hp',
         'foto_ktp',
+        'foto_profile',
         'jk',
 
 

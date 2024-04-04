@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('no_hp')->unique();
             $table->enum('jk', ['L', 'P']);
             $table->string('foto_ktp')->default('default.png');
+            $table->string('foto_profile')->default('default.png');
             $table->enum('level', ['admin', 'user'])->default('user');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
