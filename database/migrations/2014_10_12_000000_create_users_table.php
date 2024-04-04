@@ -28,7 +28,7 @@ return new class extends Migration
 
         $user = new User();
         $user ->nama = 'admin';
-        $user ->email = 'admin@mail.com';
+        $user ->email = 'admin@mail';
         $user ->no_hp = '123123';
         $user ->jk = 'L';
         $user ->password = bcrypt('123');
