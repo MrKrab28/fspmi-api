@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AnggotaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\IuranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,10 @@ Route::get('anggota/edit{user}', [AnggotaController::class, 'edit'])->name('angg
 Route::put('anggota/update{user}', [AnggotaController::class, 'update'])->name('anggota-update');
 Route::delete('anggota/delete{user}', [AnggotaController::class, 'destroy'])->name('anggota-delete');
 
+Route::get('iuran', [IuranController::class, 'index'])->name('iuran-index');
+Route::post('iuran/add', [IuranController::class, 'store'])->name('iuran-store');
 
+Route::post('iuran/add/item', [IuranController::class, 'storeItem'])->name('iuran-store.item');
 
 Route::get('/user', function(){
     return view('admin.anggota');

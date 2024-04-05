@@ -1,14 +1,14 @@
 @extends('layout')
 
 @section('content')
-  
+
     <div class="container-fluid content-inner mt-2">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card text-nowrap">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div class="header-title">
-                            <h4 class="mb-0">Daftar Anggota</h4>
+                            <h4 class="mb-0">Daftar Iuran</h4>
                         </div>
                         <button type="submit" class="btn btn-primary " data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Tambah Data</button>
@@ -22,9 +22,10 @@
                                     <tr>
 
                                         <th>No</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Email</th>
+                                        <th>Nama Anggota</th>
+                                        <th>Total Iuran</th>
+                                        <th>Tanggal Pembayaran </th>
+                                        <th>Status Setoran Bulan Ini</th>
                                         <th>No. HP</th>
 
                                         <th></th>
@@ -32,36 +33,32 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($anggota as $user)
+                                    @foreach ($daftariuran as $iuran)
                                         <tr>
 
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $user->nama }}</td>
-                                            @if ($user->jk = 'L')
-                                                <td>Laki - Laki</td>
-                                            @elseif ($user->jk = 'P')
-                                                <td>Perempuan</td>
-                                            @endif
-
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->no_hp }}</td>
+                                            <td>{{ $iuran->user->nama }}</td>
+                                            <td>{{ $iuran->items->sum('nominal') }}</td>
+                                            <td>{{ $iuran->items[0]->tgl_bayar }}</td>
+                                            <td>{{ $iuran->status }}</td>
+                                            <td>{{ $iuran->user->no_hp }}</td>
 
                                             </td>
 
                                             <td class="text-center">
                                                 <button class="btn btn-primary btn-sm"
-                                                    onclick="document.location.href = '{{ route('anggota-edit', $user->id) }}'">
-                                                    <i class="ti ti-pencil"></i>
+                                                    onclick="document.location.href = '?iuran={{ $iuran->id }}'">
+                                                    Bayar Iuran
                                                 </button>
 
-                                                <form id="formDelete{{ $user->id }}"
-                                                    action="{{ route('anggota-delete', $user->id) }}" class="d-inline"
+                                                <form id="formDelete{{ $iuran->id }}"
+                                                    action="{{ route('anggota-delete', $iuran->id) }}" class="d-inline"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <input type="hidden" name="id" value="">
                                                 </form>
-                                                    <button type="submit" onclick="deleteData({{ $user->id }})"
+                                                    <button type="submit" onclick="deleteData({{ $iuran->id }})"
                                                         class="btn btn-danger btn-sm">
                                                         <i class=" ti ti-trash"></i>
                                                     </button>
@@ -85,58 +82,32 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Anggota
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Daftar Iuran
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('anggota-store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('iuran-store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" name="nama" autocomplete="off"
+                            <label for="anggota" class="form-label">Anggota</label>
+                            <select class="form-select js-choice" id="anggota" name="id_anggota" required>
+                                <option value="">Pilih</option>
+                                @foreach ($daftarAnggota as $anggota)
+                                    <option value="{{ $anggota->id }}">{{ $anggota->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nominal" class="form-label">Nominal Iuran</label>
+                            <input type="number" class="form-control" id="nominal" name="nominal" autocomplete="off"
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="input-group-text" id="basic-addon1">Jenis Kelamin</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jk" value="L" id="jk">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Laki - Laki
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jk" value="P"
-                                    id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="jk">
-                                    Perempuan
-                                </label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" autocomplete="off"
+                            <label for="tgl_bayar" class="form-label">Tanggal Pembayaran Iuran</label>
+                            <input type="date" class="form-control" id="tgl_bayar" name="tgl_bayar" autocomplete="off"
                                 required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="no_hp" class="form-label">No. HP</label>
-                            <input type="text" class="form-control" id="no_hp" name="no_hp" autocomplete="off"
-                                required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="mb-0" for="no_hp">Foto Profile</label>
-                            <input type="file" class="form-control" id="foto_profile" name="foto_profile"
-                                autocomplete="off">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="mb-0" for="no_hp">Foto KTP</label>
-                            <input type="file" class="form-control" id="foto_ktp" name="foto_ktp"
-                                autocomplete="off">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label" id="Password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="modal-footer">
 
@@ -150,10 +121,12 @@
 @endpush
 @push('styles')
     @include('includes.datatables.styles')
+    @include('includes.choices-js.styles')
 @endpush
 
 @push('scripts')
     @include('includes.datatables.scripts')
+    @include('includes.choices-js.scripts')
     <script>
         $(document).ready(function() {
             $('#table').DataTable({

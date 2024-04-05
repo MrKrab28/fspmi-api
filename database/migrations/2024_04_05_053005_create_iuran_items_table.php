@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('iuran', function (Blueprint $table) {
+        Schema::create('iuran_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_anggota');
+            $table->foreignId('id_iuran');
+            $table->integer('nominal');
+            $table->date('tgl_bayar');
             $table->timestamps();
 
-            $table->foreign('id_anggota')->references('id')->on('users')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+
+            $table->foreign('id_iuran')->references('id')->on('iuran')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('iuran');
+        Schema::dropIfExists('iuran_items');
     }
 };
