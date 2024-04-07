@@ -27,7 +27,7 @@ class AnggotaController extends Controller
             'foto_ktp' => 'required',
         ]);
         $user = new User();
-        
+
                 $foto_profile = $request->file('foto_profile');
                 $foto_ktp = $request->file('foto_ktp');
 

@@ -32,6 +32,7 @@ return new class extends Migration
         $user ->email = 'admin@mail';
         $user ->no_hp = '123123';
         $user ->jk = 'L';
+        $user ->level = 'admin';
         $user ->password = bcrypt('123');
         $user ->save();
     }

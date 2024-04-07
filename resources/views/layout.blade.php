@@ -20,12 +20,18 @@
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
 
+            @if (Auth()->user()->level == 'admin')
 
-                <!-- Sidebar navigation-->
-                <!-- Sidebar Start -->
-                @include('includes.admin.sidebar')
-                <!--  Sidebar End -->
-                <!-- End Sidebar navigation -->
+
+            <!-- Sidebar navigation-->
+            <!-- Sidebar Start -->
+            @include('includes.admin.sidebar')
+            <!--  Sidebar End -->
+            <!-- End Sidebar navigation -->
+            @endif
+            @if (Auth()->user()->level == 'user')
+                @include('includes.user.sidebar')
+            @endif
 
             <!-- End Sidebar scroll-->
         </aside>
@@ -35,8 +41,13 @@
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-            @include('includes.admin.header')
+            @if (Auth()->user()->level == 'admin')
 
+            @include('includes.admin.header')
+            @endif
+            @if (Auth()->user()->level == 'user')
+            @include('includes.user.header')
+            @endif
 
 
             <!--  Header End -->

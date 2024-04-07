@@ -12,6 +12,9 @@
       </ul>
       <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+            <li>
+                <h5>{{ Auth()->user()->nama }}</h5>
+            </li>
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -31,8 +34,11 @@
                   <i class="ti ti-list-check fs-6"></i>
                   <p class="mb-0 fs-3">My Task</p>
                 </a>
-                <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
-              </div>
+                <form action="{{ route('user-logout') }}" method="POST">
+                    @csrf
+                <button type="submit" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</button>
+            </form>
+            </div>
             </div>
           </li>
         </ul>

@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('pengaduan', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_anggota');
             $table->string('judul');
-            $table->string('detail');
+            $table->text('detail');
             $table->string('lampiran');
+            $table->date('tgl_pengaduan');
             $table->timestamps();
+
+            $table->foreign('id_anggota')->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

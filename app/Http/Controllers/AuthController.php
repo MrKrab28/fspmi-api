@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Builder\Function_;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -10,7 +12,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        return view('layout');
+        return view('admin.dashboard');
     }
 
     public function getLogin(){
@@ -32,6 +34,15 @@ class AuthController extends Controller
     }
 
 
+    public function logout(Request $request){
+        Auth::logout();
 
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        
+        return redirect()->route('login');
+    }
 
 }

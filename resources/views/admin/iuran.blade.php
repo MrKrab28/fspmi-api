@@ -43,7 +43,7 @@
                                             <td>{{ $iuran->status }}</td>
                                             <td>{{ $iuran->user->no_hp }}</td>
 
-                                            </td>
+
 
                                             <td class="text-center">
                                                 <button class="btn btn-primary btn-sm"
