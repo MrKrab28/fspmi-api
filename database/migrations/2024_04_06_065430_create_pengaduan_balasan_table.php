@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pengaduan_balasan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pengaduan');
-            $table->foreignId('id_anggota');
-            // $table->enum('pengirim', ['admin', 'anggota']);
+            // $table->foreignId('id_anggota');
+            $table->enum('pengirim', ['admin', 'anggota']);
             $table->text('isi_balasan');
             // $table->integer('parent');
 
@@ -24,8 +24,8 @@ return new class extends Migration
             $table->foreign('id_pengaduan')->references('id')->on('pengaduan')
             ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->foreign('id_anggota')->references('id')->on('users')
-            ->onDelete('cascade')->onUpdate('cascade');
+
+            
         });
     }
 

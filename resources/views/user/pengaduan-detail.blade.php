@@ -73,11 +73,22 @@
                                             <p class="fw-light mb-4 pb-2"></p>
                                             @foreach ($pengaduan->balasan as $balasan)
                                                 <div class="d-flex flex-start">
-                                                    <img class="rounded-circle shadow-1-strong me-3"
-                                                        src="{{ asset('f/foto-profile/' . $balasan->user->foto_profile) }}"
-                                                        alt="avatar" width="60" height="60" />
+                                                    @if ($balasan->pengirim == 'anggota')
+                                                        <img class="rounded-circle shadow-1-strong me-3"
+                                                            src="{{ asset('f/foto-profile/' . $pengaduan->user->foto_profile) }}"
+                                                            alt="avatar" width="60" height="60" />
+                                                    @else
+                                                        <img class="rounded-circle shadow-1-strong me-3"
+                                                            src="{{ asset('f/foto-profile/default.png') }}" alt="avatar"
+                                                            width="60" height="60" />
+                                                    @endif
+
                                                     <div>
-                                                        <h6 class="fw-bold mb-1">{{ $balasan->user->nama }}</h6>
+                                                        @if ($balasan->pengirim == 'anggota')
+                                                            <h6 class="fw-bold mb-1">{{ $pengaduan->user->nama }}</h6>
+                                                        @else
+                                                            <h6 class="fw-bold mb-1">Admin</h6>
+                                                        @endif
                                                         <div class="d-flex align-items-center mb-3">
                                                             <p class="mb-0">
                                                                 {{ Carbon\Carbon::parse($balasan->pengaduan->tgl_pengaduan)->isoFormat('DD MMMM YYYY') }}
@@ -134,13 +145,13 @@
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('balas-pengaduan') }}" method="POST">
+                <form action="{{ route('user-balas-pengaduan') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         {{-- @foreach ($pengaduan->balasan as $balasan) --}}
-                            <input type="hidden" name="id_pengaduan" value="{{ $pengaduan->id }}">
+                        <input type="hidden" name="id_pengaduan" value="{{ $pengaduan->id }}">
 
-                            {{-- <input type="hidden" name="parent" value="{{ $balasan->id }}"> --}}
+                        {{-- <input type="hidden" name="parent" value="{{ $balasan->id }}"> --}}
                         {{-- @endforeach --}}
                         {{-- <div class="mb-3">
                             <label for="anggota" class="form-label">Anggota</label>

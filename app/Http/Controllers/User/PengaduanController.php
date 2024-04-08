@@ -60,20 +60,20 @@ class PengaduanController extends Controller
     public function buatPengaduan(){
         return view('user.buat-pengaduan');
     }
-    public function balasPengaduan(){
-        $data = [
-            'daftarPengaduan' => Pengaduan::all(),
-            'daftarAnggota' => User::all()
-        ];
-        return view('user.pengaduan-detail', $data);
-    }
+    // public function balasPengaduan(){
+    //     $data = [
+    //         'daftarPengaduan' => Pengaduan::all(),
+    //         'daftarAnggota' => User::all()
+    //     ];
+    //     return view('user.pengaduan-detail', $data);
+    // }
 
-    public function balasPengaduanPost(Request $request){
+    public function balasPengaduan(Request $request){
         $pengaduan = Pengaduan::find($request->pengaduan);
         $balas = new PengaduanBalasan();
         $balas->id_pengaduan = $request->id_pengaduan;
-        $balas->id_anggota = auth()->user()->id;
-        $balas->parent = $request->parent;
+        $balas->pengirim = 'anggota';
+        // $balas->parent = $request->parent;
         $balas->isi_balasan = $request->isi_balasan;
         $balas->save();
         return redirect()->back()->with('success', 'Pesan Terkirim');

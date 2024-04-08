@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,18 +18,18 @@
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
 
-            @if (Auth()->user()->level == 'admin')
 
+            @auth('admin')
+                @include('includes.admin.sidebar')
+            @endauth
 
             <!-- Sidebar navigation-->
             <!-- Sidebar Start -->
-            @include('includes.admin.sidebar')
             <!--  Sidebar End -->
             <!-- End Sidebar navigation -->
-            @endif
-            @if (Auth()->user()->level == 'user')
+            @auth('user')
                 @include('includes.user.sidebar')
-            @endif
+            @endauth
 
             <!-- End Sidebar scroll-->
         </aside>
@@ -41,13 +39,12 @@
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-            @if (Auth()->user()->level == 'admin')
-
-            @include('includes.admin.header')
-            @endif
-            @if (Auth()->user()->level == 'user')
-            @include('includes.user.header')
-            @endif
+            @auth('admin')
+                @include('includes.admin.header')
+            @endauth
+            @auth('user')
+                @include('includes.user.header')
+            @endauth
 
 
             <!--  Header End -->
@@ -64,38 +61,35 @@
 
 
     @include('includes.scripts')
-@stack('modals')
+    @stack('modals')
     @stack('scripts')
     @if (Session::has('login-success'))
-    <script>
-        Swal.fire({
-            title: "{{ Session::get('login-success') }}",
-            text: "Selamat Datang",
-            icon: "success"
-        });
-    </script>
-@endif
-@if (Session::has('success'))
-    <script>
-        Swal.fire({
-            title: "Berhasil",
-            text: "{{ Session::get('success') }}",
-            icon: "success"
-        });
-    </script>
-@endif
-@if (Session::has('error'))
-    <script>
-        Swal.fire({
-            title: "Gagal",
-            text: "{{ Session::get('error') }}",
-            icon: "error"
-        });
-    </script>
-@endif
+        <script>
+            Swal.fire({
+                title: "{{ Session::get('login-success') }}",
+                text: "Selamat Datang",
+                icon: "success"
+            });
+        </script>
+    @endif
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: "Berhasil",
+                text: "{{ Session::get('success') }}",
+                icon: "success"
+            });
+        </script>
+    @endif
+    @if (Session::has('error'))
+        <script>
+            Swal.fire({
+                title: "Gagal",
+                text: "{{ Session::get('error') }}",
+                icon: "error"
+            });
+        </script>
+    @endif
 </body>
 
 </html>
-
-
-

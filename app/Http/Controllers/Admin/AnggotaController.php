@@ -70,7 +70,10 @@ class AnggotaController extends Controller
         $user->nama = $request->nama;
         $user->no_hp = $request->no_hp;
         $user->jk = $request->jk;
-        $user->password = bcrypt($request->password);
+        if($request->password){
+
+            $user->password = bcrypt($request->password);
+        }
 
         if ($foto_profile) {
 

@@ -23,7 +23,6 @@ use App\Models\Pengaduan;
 // Route::get('/', function () {
 //     return view('admin.dashboard')->name('dashboard');
 // });
-
 Route::get('/', [AuthController::class, 'index'])->middleware('auth')->name('dashboard');
 
 Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
@@ -31,38 +30,49 @@ Route::post('/login', [AuthController::class, 'postLogin'])->name('authenticate'
 Route::post('/logout', [AuthController::class, 'logout'])->name('user-logout');
 
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::group(['middleware' =>  'auth:admin'], function () {
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
-Route::get('anggota', [AnggotaController::class, 'index'])->name('anggota-index');
-Route::post('anggota/add', [AnggotaController::class, 'store'])->name('anggota-store');
-Route::get('anggota/edit{user}', [AnggotaController::class, 'edit'])->name('anggota-edit');
-Route::put('anggota/update{user}', [AnggotaController::class, 'update'])->name('anggota-update');
-Route::delete('anggota/delete{user}', [AnggotaController::class, 'destroy'])->name('anggota-delete');
+    Route::get('anggota', [AnggotaController::class, 'index'])->name('anggota-index');
+    Route::post('anggota/add', [AnggotaController::class, 'store'])->name('anggota-store');
+    Route::get('anggota/edit{user}', [AnggotaController::class, 'edit'])->name('anggota-edit');
+    Route::put('anggota/update{user}', [AnggotaController::class, 'update'])->name('anggota-update');
+    Route::delete('anggota/delete{user}', [AnggotaController::class, 'destroy'])->name('anggota-delete');
 
-Route::get('iuran', [IuranController::class, 'index'])->name('iuran-index');
-Route::post('iuran/add', [IuranController::class, 'store'])->name('iuran-store');
+    Route::get('iuran', [IuranController::class, 'index'])->name('iuran-index');
+    Route::post('iuran/add', [IuranController::class, 'store'])->name('iuran-store');
 
-Route::post('iuran/add-items', [IuranController::class, 'storeItem'])->name('iuran-store.item');
+    Route::post('iuran/add-items', [IuranController::class, 'storeItem'])->name('iuran-store.item');
 
+    // admin
+    Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan-index');
+    Route::post('pengaduan/add', [PengaduanController::class, 'store'])->name('pengaduan-store');
+    Route::post('pengaduan/add-items', [PengaduanController::class, 'storeItem'])->name('pengaduan-store.item');
+    Route::post('balas-pengaduan', [PengaduanController::class, 'balasPengaduan'])->name('balas-pengaduan');
 
-// admin
-Route::get('pengaduan', [PengaduanController::class, 'index'])->name('pengaduan-index');
-Route::post('pengaduan/add', [PengaduanController::class, 'store'])->name('pengaduan-store');
-Route::post('pengaduan/add-items', [PengaduanController::class, 'storeItem'])->name('pengaduan-store.item');
-
-// user
-Route::get('pengaduan-index', [UserPengaduanController::class, 'index'])->name('user-pengaduan-index');
-
-Route::get('pengaduan/user', [UserPengaduanController::class, 'balaspengaduan'])->name('balasPengaduan');
-Route::post('pengaduan/user/add', [UserPengaduanController::class, 'store'])->name('user-pengaduan-store');
-
-Route::get('buat-pengaduan', [UserPengaduanController::class , 'buatPengaduan'])->name('user-buat-pengaduan');
-Route::post('balas-pengaduan', [PengaduanController::class, 'balasPengaduan'])->name('balas-pengaduan');
-Route::get('user-balas-pengaduan', [UserPengaduanController::class, 'balasPengaduan'])->name('user-balas-pengaduan');
+});
 
 
 
-Route::get('/user', function(){
+
+
+Route::group(['middleware' =>  'auth:user', 'prefix' => 'user'], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('user-dashboard');
+
+    Route::get('iuran', [IuranController::class, 'index'])->name('user-iuran-index');
+
+    // user
+    Route::get('pengaduan-index', [UserPengaduanController::class, 'index'])->name('user-pengaduan-index');
+
+    // Route::get('pengaduan/user', [UserPengaduanController::class, 'balaspengaduan'])->name('balasPengaduan');
+    Route::post('pengaduan/user/add', [UserPengaduanController::class, 'store'])->name('user-pengaduan-store');
+
+    Route::get('buat-pengaduan', [UserPengaduanController::class, 'buatPengaduan'])->name('user-buat-pengaduan');
+    Route::post('balas-pengaduan', [UserPengaduanController::class, 'balasPengaduan'])->name('user-balas-pengaduan');
+
+});
+Route::get('/user', function () {
     return view('admin.anggota');
 })->name('anggota');

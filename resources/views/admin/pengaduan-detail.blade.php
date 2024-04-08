@@ -43,9 +43,13 @@
                                         class="email-head-sender d-flex align-items-center justify-content-between flex-wrap">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar">
+
                                                 <img src="{{ asset('f/foto-profile/' . $pengaduan->user->foto_profile) }}"
-                                                    alt="Avatar" class="rounded-circle user-avatar-md"
-                                                    style="height: 100px;width:100px">
+                                                alt="Avatar" class="rounded-circle user-avatar-md"
+                                                style="height: 100px;width:100px">
+
+
+
                                             </div>
                                             <div class="sender d-flex align-items-center">
                                                 <h3 href="#">{{ $pengaduan->user->nama }}</h3>
@@ -75,11 +79,24 @@
                                             @foreach ($pengaduan->balasan as $balasan )
 
                                             <div class="d-flex flex-start">
+                                                @if($balasan->pengirim == 'anggota')
                                                 <img class="rounded-circle shadow-1-strong me-3"
-                                                    src="{{ asset('f/foto-profile/' . $balasan->user->foto_profile) }}"
+                                                    src="{{ asset('f/foto-profile/' . $pengaduan->user->foto_profile) }}"
                                                     alt="avatar" width="60" height="60" />
-                                                <div>
-                                                    <h6 class="fw-bold mb-1">{{ $balasan->user->nama }}</h6>
+                                                @else
+                                                <img class="rounded-circle shadow-1-strong me-3"
+                                                    src="{{ asset('f/foto-profile/default.png') }}"
+                                                    alt="avatar" width="60" height="60" />
+                                                    @endif
+                                                    <div>
+
+                                                    @if ($balasan->pengirim == 'anggota')
+
+                                                    <h6 class="fw-bold mb-1">{{ $pengaduan->user->nama }}</h6>
+                                                    @else
+                                                    <h6 class="fw-bold mb-1">Admin</h6>
+
+                                                    @endif
                                                     <div class="d-flex align-items-center mb-3">
                                                         <p class="mb-0">
                                                                 {{ Carbon\Carbon::parse($balasan->pengaduan->tgl_pengaduan)->isoFormat('DD MMMM YYYY')  }}

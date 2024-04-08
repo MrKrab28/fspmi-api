@@ -28,8 +28,8 @@ return new class extends Migration
         });
 
         $user = new User();
-        $user ->nama = 'admin';
-        $user ->email = 'admin@mail';
+        $user ->nama = 'asri';
+        $user ->email = 'asri@mail';
         $user ->no_hp = '123123';
         $user ->jk = 'L';
         $user ->level = 'admin';

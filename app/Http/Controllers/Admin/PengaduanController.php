@@ -43,7 +43,7 @@ class PengaduanController extends Controller
         $pengaduan = Pengaduan::find($request->pengaduan);
         $balas = new PengaduanBalasan();
         $balas->id_pengaduan = $request->id_pengaduan;
-        $balas->id_anggota = auth()->user()->id;
+        $balas->pengirim = 'admin';
         // $balas->parent = $request->parent;
         $balas->isi_balasan = $request->isi_balasan;
         $balas->save();

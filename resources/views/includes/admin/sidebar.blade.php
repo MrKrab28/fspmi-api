@@ -62,22 +62,8 @@
                         <span class="hide-menu">Laporan</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('balasPengaduan') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-clipboard-text"></i>
-                        </span>
-                        <span class="hide-menu">Buat Pengaduan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('user-balas-pengaduan') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-clipboard-text"></i>
-                        </span>
-                        <span class="hide-menu">Balas Pesan Pengaduan</span>
-                    </a>
-                </li>
+
+                
             </ul>
 
         </nav>
