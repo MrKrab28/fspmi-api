@@ -28,7 +28,7 @@ class User extends Authenticatable
 
 
     ];
-
+    
 
     public function iuran(){
         return $this->hasMany(Iuran::class, 'id_anggota');

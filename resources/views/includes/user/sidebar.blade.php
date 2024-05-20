@@ -20,7 +20,7 @@
 
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('iuran-index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('user-iuran-index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-cash"></i>
                         </span>

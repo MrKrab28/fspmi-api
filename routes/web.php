@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IuranController;
 use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\User\PengaduanController as UserPengaduanController;
+use App\Http\Controllers\User\IuranController as UserIuranController;
+
 use App\Models\Pengaduan;
 
 /*
@@ -61,7 +63,7 @@ Route::group(['middleware' =>  'auth:admin'], function () {
 Route::group(['middleware' =>  'auth:user', 'prefix' => 'user'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('user-dashboard');
 
-    Route::get('iuran', [IuranController::class, 'index'])->name('user-iuran-index');
+    Route::get('iuran', [UserIuranController::class, 'index'])->name('user-iuran-index');
 
     // user
     Route::get('pengaduan-index', [UserPengaduanController::class, 'index'])->name('user-pengaduan-index');

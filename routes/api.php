@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController as ApiAuthController;
+use App\Http\Controllers\Api\IuranController as ApiIuranController;
+use App\Http\Controllers\Api\UserController as ApiUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', [ApiAuthController::class, 'authenticate']);
+Route::post('register', [ApiAuthController::class, 'register']);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('user', function (Request $request) {
+        return $request->user();
+    });
+    Route::get('iuran-user', [ApiIuranController::class, 'index']);
+    Route::get('profile', [ApiUserController::class, 'index']);
+    Route::put('profile/update', [ApiUserController::class, 'update']);
+    Route::get('logout', [ApiAuthController::class, 'logout']);
 });
