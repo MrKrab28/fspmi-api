@@ -26,7 +26,6 @@
                             </div>
                         </div>
                     </div>
-                    <div id="earning"></div>
                 </div>
 
 
@@ -52,7 +51,6 @@
                             </div>
                         </div>
                     </div>
-                    <div id="earning"></div>
                 </div>
 
 
@@ -78,7 +76,6 @@
                             </div>
                         </div>
                     </div>
-                    <div id="earning"></div>
                 </div>
 
 
