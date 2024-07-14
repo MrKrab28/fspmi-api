@@ -25,7 +25,9 @@ use App\Models\Pengaduan;
 // Route::get('/', function () {
 //     return view('admin.dashboard')->name('dashboard');
 // });
-Route::get('/', [AuthController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
 
 Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'postLogin'])->name('authenticate');
@@ -53,7 +55,6 @@ Route::group(['middleware' =>  'auth:admin'], function () {
     Route::post('pengaduan/add', [PengaduanController::class, 'store'])->name('pengaduan-store');
     Route::post('pengaduan/add-items', [PengaduanController::class, 'storeItem'])->name('pengaduan-store.item');
     Route::post('balas-pengaduan', [PengaduanController::class, 'balasPengaduan'])->name('balas-pengaduan');
-
 });
 
 
@@ -73,7 +74,6 @@ Route::group(['middleware' =>  'auth:user', 'prefix' => 'user'], function () {
 
     Route::get('buat-pengaduan', [UserPengaduanController::class, 'buatPengaduan'])->name('user-buat-pengaduan');
     Route::post('balas-pengaduan', [UserPengaduanController::class, 'balasPengaduan'])->name('user-balas-pengaduan');
-
 });
 Route::get('/user', function () {
     return view('admin.anggota');
