@@ -11,7 +11,7 @@
                         <div class="row align-items-start">
                             <div class="col-8">
                                 <h5 class="card-title mb-9 fw-semibold"> Jumlah Anggota </h5>
-                                <h4 class="fw-semibold mb-3">24 Anggota</h4>
+                                <h4 class="fw-semibold mb-3">{{ $anggota }}</h4>
                                 <div class="d-flex align-items-center pb-1">
 
                                 </div>
@@ -35,8 +35,8 @@
                     <div class="card-body">
                         <div class="row align-items-start">
                             <div class="col-8">
-                                <h5 class="card-title mb-9 fw-semibold"> Jumlah Anggota </h5>
-                                <h4 class="fw-semibold mb-3">24 Anggota</h4>
+                                <h5 class="card-title mb-9 fw-semibold"> Jumlah Pengaduan </h5>
+                                <h4 class="fw-semibold mb-3">{{ $pengaduan }}</h4>
                                 <div class="d-flex align-items-center pb-1">
 
                                 </div>
@@ -60,8 +60,8 @@
                     <div class="card-body">
                         <div class="row align-items-start">
                             <div class="col-8">
-                                <h5 class="card-title mb-9 fw-semibold"> Jumlah Anggota </h5>
-                                <h4 class="fw-semibold mb-3">24 Anggota</h4>
+                                <h5 class="card-title mb-9 fw-semibold"> Total Iuran </h5>
+                                <h4 class="fw-semibold mb-3">Rp. {{ $iuran }}</h4>
                                 <div class="d-flex align-items-center pb-1">
 
                                 </div>

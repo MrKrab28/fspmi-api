@@ -54,14 +54,14 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
                         <span>
                             <i class="ti ti-clipboard-text"></i>
                         </span>
                         <span class="hide-menu">Laporan</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
 
         </nav>

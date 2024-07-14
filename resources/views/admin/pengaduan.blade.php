@@ -9,8 +9,8 @@
                         <div class="header-title">
                             <h4 class="mb-0">Daftar List Pengaduan</h4>
                         </div>
-                        <button type="submit" class="btn btn-primary " data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Tambah Data</button>
+                        {{-- <button type="submit" class="btn btn-primary " data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Tambah Data</button> --}}
                     </div>
                     <div class="card-body text-nowrap">
 
@@ -26,8 +26,6 @@
                                         <th>Tanggal Pengaduan</th>
                                         <th></th>
 
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,13 +36,14 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->user->nama }}</td>
                                             <td>{{ Str::limit($item->judul, 30) }}</td>
-                                            <td>{{ Carbon\Carbon::parse($item->tgl_pengaduan)->isoFormat('DD MMMM YYYY')  }}</td>
+                                            <td>{{ Carbon\Carbon::parse($item->tgl_pengaduan)->isoFormat('DD MMMM YYYY') }}
+                                            </td>
 
 
                                             <td class="text-center">
                                                 <button class="btn btn-primary btn-sm"
                                                     onclick="document.location.href = '?pengaduan={{ $item->id }}'">
-                                                   Detail
+                                                    Detail
                                                 </button>
 
                                                 <form id="formDelete{{ $item->id }}"
@@ -74,7 +73,7 @@
         </div>
     </div>
 @endsection
-@push('modals')
+{{-- @push('modals')
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -87,16 +86,6 @@
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="iuran" value="{{ Request::get('pengaduan') }}">
-                        {{-- <div class="mb-3">
-                            <label for="anggota" class="form-label">Anggota</label>
-                            <select class="form-select js-choice" id="anggota" name="id_anggota" required>
-                                <option value="">Pilih</option>
-                                @foreach ($daftarAnggota as $anggota)
-                                    <option value="{{ $anggota->id }}">{{ $anggota->nama }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div> --}}
                         <div class="mb-3">
                             <label for="nominal" class="form-label">Nominal Iuran</label>
                             <input type="number" class="form-control" id="nominal" name="nominal" autocomplete="off"
@@ -116,7 +105,7 @@
             </div>
         </div>
     </div>
-@endpush
+@endpush --}}
 @push('styles')
     @include('includes.datatables.styles')
     @include('includes.choices-js.styles')
