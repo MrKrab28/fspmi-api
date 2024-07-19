@@ -19,12 +19,12 @@ class PengaduanController extends Controller
         Carbon::setLocale('id');
     }
 
-    public function index(Request $request){
-        if($request->has('pengaduan')){
-            $pengaduan= Pengaduan::find($request->pengaduan);
+    public function index(Request $request)
+    {
+        if ($request->has('pengaduan')) {
+            $pengaduan = Pengaduan::find($request->pengaduan);
 
-                    return view('user.pengaduan-detail', compact('pengaduan'));
-
+            return view('user.pengaduan-detail', compact('pengaduan'));
         }
 
         $data = [
@@ -35,7 +35,8 @@ class PengaduanController extends Controller
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $foto_lampiran = $request->file('lampiran');
         $pengaduan = new Pengaduan();
@@ -57,7 +58,8 @@ class PengaduanController extends Controller
         return redirect()->back()->with('success', 'Berhasil Mengirim Pengaduan');
     }
 
-    public function buatPengaduan(){
+    public function buatPengaduan()
+    {
         return view('user.buat-pengaduan');
     }
     // public function balasPengaduan(){
@@ -68,7 +70,8 @@ class PengaduanController extends Controller
     //     return view('user.pengaduan-detail', $data);
     // }
 
-    public function balasPengaduan(Request $request){
+    public function balasPengaduan(Request $request)
+    {
         $pengaduan = Pengaduan::find($request->pengaduan);
         $balas = new PengaduanBalasan();
         $balas->id_pengaduan = $request->id_pengaduan;
@@ -77,7 +80,5 @@ class PengaduanController extends Controller
         $balas->isi_balasan = $request->isi_balasan;
         $balas->save();
         return redirect()->back()->with('success', 'Pesan Terkirim');
-     }
-
-
+    }
 }

@@ -47,6 +47,7 @@ Route::group(['middleware' =>  'auth:admin'], function () {
 
     Route::get('iuran', [IuranController::class, 'index'])->name('iuran-index');
     Route::post('iuran/add', [IuranController::class, 'store'])->name('iuran-store');
+    Route::delete('iuran/{iuran}', [IuranController::class, 'destroy'])->name('iuran-delete');
 
     Route::post('iuran/add-items', [IuranController::class, 'storeItem'])->name('iuran-store.item');
 

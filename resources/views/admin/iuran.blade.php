@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
     <div class="container-fluid content-inner mt-2">
         <div class="row">
             <div class="col-sm-12">
@@ -43,8 +42,6 @@
                                             <td>{{ $iuran->status }}</td>
                                             <td>{{ $iuran->user->no_hp }}</td>
 
-
-
                                             <td class="text-center">
                                                 <button class="btn btn-primary btn-sm"
                                                     onclick="document.location.href = '?iuran={{ $iuran->id }}'">
@@ -52,16 +49,16 @@
                                                 </button>
 
                                                 <form id="formDelete{{ $iuran->id }}"
-                                                    action="{{ route('anggota-delete', $iuran->id) }}" class="d-inline"
+                                                    action="{{ route('iuran-delete', $iuran->id) }}" class="d-inline"
                                                     method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <input type="hidden" name="id" value="">
                                                 </form>
-                                                    <button type="submit" onclick="deleteData({{ $iuran->id }})"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class=" ti ti-trash"></i>
-                                                    </button>
+                                                <button type="submit" onclick="deleteData({{ $iuran->id }})"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class=" ti ti-trash"></i>
+                                                </button>
 
                                             </td>
                                         </tr>
@@ -134,8 +131,6 @@
                 sort: false
             });
         });
-
-
 
         function deleteData(id) {
             Swal.fire({

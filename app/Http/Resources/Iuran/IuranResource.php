@@ -16,8 +16,8 @@ class IuranResource extends JsonResource
     {
         return [
             'total_iuran' => $this->items->sum('nominal'),
-            'items' => IuranItemResource::collection($this->items),
-
+            'status' => $this->status,
+            'items' => IuranItemResource::collection($this->items) ?? [],
         ];
     }
 }

@@ -25,16 +25,16 @@ class User extends Authenticatable
         'foto_ktp',
         'foto_profile',
         'jk',
-
-
     ];
-    
 
-    public function iuran(){
-        return $this->hasMany(Iuran::class, 'id_anggota');
+
+    public function iuran()
+    {
+        return $this->hasOne(Iuran::class, 'id_anggota');
     }
 
-    public function pengaduan(){
+    public function pengaduan()
+    {
         return $this->hasMany(Pengaduan::class, 'id_anggota');
     }
     /**

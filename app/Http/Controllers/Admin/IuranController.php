@@ -27,15 +27,18 @@ class IuranController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'id_anggota' => 'required',
-
+            'nominal' => 'required',
+            'tgl_bayar' => 'required',
         ]);
 
-        $iuran = new Iuran();
-        $iuran->id_anggota = $request->id_anggota;
-        $iuran->save();
+        $iuran = Iuran::where('id_anggota', $request->id_anggota)->first();
+        if (!$iuran) {
+            $iuran = new Iuran();
+            $iuran->id_anggota = $request->id_anggota;
+            $iuran->save();
+        }
 
         $item = new IuranItem();
         $item->id_iuran = $iuran->id;
@@ -45,7 +48,8 @@ class IuranController extends Controller
         return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
     }
 
-    public function storeItem(Request $request){
+    public function storeItem(Request $request)
+    {
         $iuran = Iuran::find($request->iuran);
         $item = new IuranItem();
         $item->id_iuran = $iuran->id;
@@ -54,5 +58,11 @@ class IuranController extends Controller
         $item->save();
 
         return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
+    }
+
+    public function destroy(Iuran $iuran)
+    {
+        $iuran->delete();
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data');
     }
 }

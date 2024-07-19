@@ -12,13 +12,18 @@ use App\Http\Resources\Iuran\IuranResource;
 
 class IuranController extends Controller
 {
-    public function index(Request $request )
+    public function get(Request $request)
     {
+        $iuran = Iuran::where('id_anggota', $request->user()->id)->first();
 
-            $daftarIuran = new IuranResource(Iuran::where('id_anggota', $request->user()->id)->first());
+        if (!$iuran) {
+            $iuran = new Iuran();
+            $iuran->id_anggota = $request->user()->id;
+            $iuran->save();
+        }
+
         return response()->json([
-
-            'daftarIuran' => $daftarIuran
+            'iuran' => new IuranResource($iuran),
         ]);
     }
 }
