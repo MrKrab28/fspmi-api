@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
     <div class="container-fluid content-inner mt-2">
         <div class="row">
             <div class="col-sm-12">
@@ -61,10 +60,10 @@
                                                     @method('delete')
                                                     <input type="hidden" name="id" value="">
                                                 </form>
-                                                    <button type="submit" onclick="deleteData({{ $user->id }})"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class=" ti ti-trash"></i>
-                                                    </button>
+                                                <button type="submit" onclick="deleteData({{ $user->id }})"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class=" ti ti-trash"></i>
+                                                </button>
 
                                             </td>
                                         </tr>
@@ -98,17 +97,16 @@
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="input-group-text" id="basic-addon1">Jenis Kelamin</label>
+                            <label class="form-label">Jenis Kelamin</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jk" value="L" id="jk">
-                                <label class="form-check-label" for="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="jk" value="L" id="jkL">
+                                <label class="form-check-label" for="jkL">
                                     Laki - Laki
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jk" value="P"
-                                    id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="jk">
+                                <input class="form-check-input" type="radio" name="jk" value="P" id="jkP">
+                                <label class="form-check-label" for="jkP">
                                     Perempuan
                                 </label>
                             </div>
