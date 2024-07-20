@@ -33,9 +33,15 @@
                                                 <h3> <i class="ti ti-mail-opened"
                                                         style="width: 96px;height:96px"></i>{{ $pengaduan->judul }}</h3>
                                             </div>
+                                            @if ($pengaduan->status === 'diproses')
 
-                                            <button type="submit" class="btn btn-primary " data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">Balas Pesan</button>
+                                            <form action="{{ route('pengaduan-update') }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="pengaduan" value="{{ $pengaduan->id }}">
+                                                <button type="submit" class="btn btn-success text-dark ">Selesai</button>
+                                            </form>
+                                            @endif
 
                                         </div>
                                     </div>
@@ -71,8 +77,11 @@
 
                         <div class="container my-0 py-4">
                             <div class="row d-flex justify-content-center">
-                                <div class="col-md-4 col-lg-8">
+                                <div class="col-md-12 col-lg-12">
                                     <div class="card text-dark">
+
+
+
                                         <div class="card-body p-4">
                                             <h4 class="mb-0">Balasan Pengaduan</h4>
                                             <p class="fw-light mb-4 pb-2"></p>
@@ -111,7 +120,11 @@
                                             </div>
                                             <hr>
                                             @endforeach
+                                            <div class="d-flex justify-content-end">
 
+                                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">Balas Pesan</button>
+                                            </div>
                                         </div>
                                         <hr class="my-0" style="height: 1px;" />
                                     </div>

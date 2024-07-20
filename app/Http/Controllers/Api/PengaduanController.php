@@ -47,6 +47,10 @@ class PengaduanController extends Controller
     {
         $pengaduan = Pengaduan::find($request->id_pengaduan);
 
+        if($pengaduan->status === 'selesai'){
+            return response()->json(['message' => 'Pengaduan sudah selesai. Anda tidak dapat mengirim balasan lagi.'], 403);
+        }
+
         $balasan = new PengaduanBalasan();
         $balasan->id_pengaduan = $pengaduan->id;
         $balasan->pengirim = 'anggota';

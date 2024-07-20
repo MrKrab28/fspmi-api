@@ -56,6 +56,9 @@ Route::group(['middleware' =>  'auth:admin'], function () {
     Route::post('pengaduan/add', [PengaduanController::class, 'store'])->name('pengaduan-store');
     Route::post('pengaduan/add-items', [PengaduanController::class, 'storeItem'])->name('pengaduan-store.item');
     Route::post('balas-pengaduan', [PengaduanController::class, 'balasPengaduan'])->name('balas-pengaduan');
+
+    Route::put('pengaduan/selesai', [PengaduanController::class, 'selesaikanPengaduan'])->name('pengaduan-update');
+
 });
 
 
@@ -75,6 +78,7 @@ Route::group(['middleware' =>  'auth:user', 'prefix' => 'user'], function () {
 
     Route::get('buat-pengaduan', [UserPengaduanController::class, 'buatPengaduan'])->name('user-buat-pengaduan');
     Route::post('balas-pengaduan', [UserPengaduanController::class, 'balasPengaduan'])->name('user-balas-pengaduan');
+
 });
 Route::get('/user', function () {
     return view('admin.anggota');

@@ -1,4 +1,4 @@
-@extends('layout')
+git@extends('layout')
 
 @section('content')
 

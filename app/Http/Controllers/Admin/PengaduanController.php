@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\PengaduanItem;
 use App\Models\PengaduanBalasan;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class PengaduanController extends Controller
 {
@@ -35,12 +36,17 @@ class PengaduanController extends Controller
     }
 
 
-    public function Store(){
+    public function status(){
 
     }
 
     public function balasPengaduan(Request $request){
+
         $pengaduan = Pengaduan::find($request->pengaduan);
+        if($pengaduan->status ===  'selesai'){
+            return redirect()->back()->with('Error', '');
+        }
+
         $balas = new PengaduanBalasan();
         $balas->id_pengaduan = $request->id_pengaduan;
         $balas->pengirim = 'admin';
@@ -48,5 +54,14 @@ class PengaduanController extends Controller
         $balas->isi_balasan = $request->isi_balasan;
         $balas->save();
         return redirect()->back()->with('success', 'Pesan Terkirim');
+     }
+
+     public function selesaikanPengaduan(Request $request){
+        $pengaduan = Pengaduan::find($request->pengaduan);
+
+        $pengaduan->status = 'selesai';
+        $pengaduan->update();
+
+        return redirect()->back();
      }
 }

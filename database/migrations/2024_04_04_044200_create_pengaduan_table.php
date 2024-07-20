@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('detail');
             $table->string('lampiran');
             $table->date('tgl_pengaduan');
+            $table->enum('status', ['diproses', 'selesai'])->default('diproses');
             $table->timestamps();
 
             $table->foreign('id_anggota')->references('id')->on('users')
