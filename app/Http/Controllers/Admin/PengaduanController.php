@@ -32,17 +32,10 @@ class PengaduanController extends Controller
         return view('admin.pengaduan', $data);
     }
 
-
-    public function status(){
-
-    }
-
     public function balasPengaduan(Request $request){
 
         $pengaduan = Pengaduan::find($request->pengaduan);
-        if($pengaduan->status ===  'selesai'){
-            return redirect()->back()->with('Error', '');
-        }
+
 
         $balas = new PengaduanBalasan();
         $balas->id_pengaduan = $request->id_pengaduan;
