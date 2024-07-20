@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
-            <div class="col-lg-4 d-flex align-items-strech">
+            <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-start">
@@ -27,10 +27,8 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <div class="col-lg-4 d-flex align-items-strech">
+            <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-start">
@@ -55,13 +53,13 @@
 
 
             </div>
-            <div class="col-lg-4 d-flex align-items-strech">
+            <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-start">
                             <div class="col-8">
                                 <h5 class="card-title mb-9 fw-semibold"> Total Iuran </h5>
-                                <h4 class="fw-semibold mb-3">Rp. {{ $iuran }}</h4>
+                                <h4 class="fw-semibold mb-3">Rp. {{ number_format($iuran) }}</h4>
                                 <div class="d-flex align-items-center pb-1">
 
                                 </div>
