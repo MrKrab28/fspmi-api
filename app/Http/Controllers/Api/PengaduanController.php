@@ -14,7 +14,7 @@ class PengaduanController extends Controller
     {
         return response()->json([
             'message' => 'success',
-            'daftarPengaduan' => Pengaduan::with(['balasan'])->get(),
+            'daftarPengaduan' => Pengaduan::where('id_anggota', auth()->user()->id)->with(['balasan'])->get(),
         ], 200);
     }
 
@@ -39,7 +39,7 @@ class PengaduanController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'pengaduan' => $pengaduan
+            'daftarPengaduan' => Pengaduan::where('id_anggota', auth()->user()->id)->with(['balasan'])->get(),
         ], 200);
     }
 
@@ -47,7 +47,7 @@ class PengaduanController extends Controller
     {
         $pengaduan = Pengaduan::find($request->id_pengaduan);
 
-        if($pengaduan->status === 'selesai'){
+        if ($pengaduan->status === 'selesai') {
             return response()->json(['message' => 'Pengaduan sudah selesai. Anda tidak dapat mengirim balasan lagi.'], 403);
         }
 
