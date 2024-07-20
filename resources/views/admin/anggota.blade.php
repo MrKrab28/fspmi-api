@@ -103,8 +103,6 @@
                                 <label class="form-check-label" for="jkL">
                                     Laki - Laki
                                 </label>
-                            </div>
-                            <div class="form-check">
                                 <input class="form-check-input" type="radio" name="jk" value="P" id="jkP">
                                 <label class="form-check-label" for="jkP">
                                     Perempuan
