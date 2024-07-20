@@ -32,11 +32,8 @@ class PengaduanController extends Controller
         return view('admin.pengaduan', $data);
     }
 
-    public function balasPengaduan(Request $request){
-
-        $pengaduan = Pengaduan::find($request->pengaduan);
-
-
+    public function balasPengaduan(Request $request)
+    {
         $balas = new PengaduanBalasan();
         $balas->id_pengaduan = $request->id_pengaduan;
         $balas->pengirim = 'admin';
@@ -44,14 +41,15 @@ class PengaduanController extends Controller
         $balas->save();
 
         return redirect()->back()->with('success', 'Pesan Terkirim');
-     }
+    }
 
-     public function selesaikanPengaduan(Request $request){
+    public function selesaikanPengaduan(Request $request)
+    {
         $pengaduan = Pengaduan::find($request->pengaduan);
 
         $pengaduan->status = 'selesai';
         $pengaduan->update();
 
         return redirect()->back();
-     }
+    }
 }
