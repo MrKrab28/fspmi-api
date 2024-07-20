@@ -65,10 +65,13 @@ class AuthController extends Controller
                 'token' => $token,
             ], 200);
         }
-        return response()->json(['message' => 'Login failed'], 404);
+        return response()->json([
+            'message' => 'Login failed'
+        ], 401);
     }
 
-    public function logout(Request $request ){
+    public function logout(Request $request)
+    {
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logout Berhasil'], 200);
     }

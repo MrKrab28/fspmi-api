@@ -37,8 +37,8 @@
 
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $iuran->user->nama }}</td>
-                                            <td>{{ $iuran->items->sum('nominal') }}</td>
-                                            <td>{{ $iuran->items[0]->tgl_bayar }}</td>
+                                            <td>Rp. {{ number_format($iuran->items->sum('nominal')) }}</td>
+                                            <td>{{ $iuran->items[0]->tgl_bayar ?? '-' }}</td>
                                             <td>{{ $iuran->status }}</td>
                                             <td>{{ $iuran->user->no_hp }}</td>
 

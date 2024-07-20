@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
     <div class="container-fluid content-inner mt-2">
         <div class="row">
             <div class="col-sm-12">
@@ -20,27 +19,17 @@
                             <table id="table" class="table table-hover mt-5" style="width: 100%">
                                 <thead>
                                     <tr>
-
                                         <th>No</th>
                                         <th>Nominal</th>
                                         <th>Tanggal Pembayaran</th>
-
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach ($iuran->items->sortByDesc('tgl_bayar') as $iuran)
                                         <tr>
-
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $iuran->nominal }}</td>
+                                            <td>Rp. {{ number_format($iuran->nominal) }}</td>
                                             <td>{{ $iuran->tgl_bayar }}</td>
-
-
-
-
                                         </tr>
                                     @endforeach
                                 </tbody>
