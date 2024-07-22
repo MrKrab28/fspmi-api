@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('iuran-user', [ApiIuranController::class, 'get']);
 
     Route::get('pengaduan', [PengaduanController::class, 'get']);
+    Route::get('pengaduan/{id}', [PengaduanController::class, 'detail']);
     Route::post('pengaduan', [PengaduanController::class, 'store']);
     Route::post('pengaduan/balas', [PengaduanController::class, 'balas']);
 

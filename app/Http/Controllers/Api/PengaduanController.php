@@ -18,6 +18,14 @@ class PengaduanController extends Controller
         ], 200);
     }
 
+    public function detail($id)
+    {
+        return response()->json([
+            'message' => 'success',
+            'pengaduan' => Pengaduan::where('id', $id)->with(['balasan'])->first(),
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         $foto_lampiran = $request->file('lampiran');
