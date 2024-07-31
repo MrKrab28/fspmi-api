@@ -65,4 +65,6 @@ class IuranController extends Controller
         $iuran->delete();
         return redirect()->back()->with('success', 'Berhasil Menghapus Data');
     }
+
+    
 }

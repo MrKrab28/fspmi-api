@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        /* Resetting some default styles */
+        /* Reset some default styles */
         body, h4, table, th, td {
             margin: 0;
             padding: 0;
@@ -50,24 +50,9 @@
             padding: 15px;
         }
 
-        /* Table styles */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table th, .table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .table thead th {
-            background: #f8f9fa;
-        }
-
-        .table-hover tbody tr:hover {
-            background: #f1f1f1;
+        /* Header title */
+        .header-title h4 {
+            margin: 0;
         }
 
         /* Button styles */
@@ -96,17 +81,30 @@
             font-size: 12px;
         }
 
+        /* Table styles */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table thead th {
+            background: #f8f9fa;
+        }
+
+        .table-hover tbody tr:hover {
+            background: #f1f1f1;
+        }
+
+        /* Text alignment */
         .text-center {
             text-align: center;
-        }
-
-        /* Form styles */
-        form {
-            display: inline;
-        }
-
-        .d-inline {
-            display: inline;
         }
 
         /* Responsive styles */
@@ -114,10 +112,6 @@
             .card-header {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-
-            .table-responsive {
-                overflow-x: auto;
             }
         }
     </style>
@@ -127,7 +121,10 @@
     <div class="container-fluid content-inner mt-2">
         <div class="card">
             <div class="card-header">
-                <h4 class="mb-0">Laporan Iuran</h4>
+                <div class="header-title">
+                    <h4 class="mb-0">Daftar Pengeluaran</h4>
+                </div>
+                
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -135,23 +132,19 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Anggota</th>
-                                <th>Total Iuran</th>
-                                <th>Tanggal Pembayaran</th>
-                                <th>Status Setoran Bulan Ini</th>
-                                <th>No. HP</th>
-                               
+                                <th>Keperluan</th>
+                                <th>Jumlah Pengeluaran</th>
+                                <th>Tanggal</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($iuran as $iuran)
+                            @foreach ($pengeluaran as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $iuran->user->nama }}</td>
-                                    <td>{{ $iuran->items->sum('nominal') }}</td>
-                                    <td>{{ $iuran->items[0]->tgl_bayar }}</td>
-                                    <td>{{ $iuran->status }}</td>
-                                    <td>{{ $iuran->user->no_hp }}</td>
+                                    <td>{{ $item->keperluan }}</td>
+                                    <td>Rp. {{ number_format($item->jumlah) }}</td>
+                                    <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}</td>
 
                                 </tr>
                             @endforeach
@@ -162,39 +155,23 @@
         </div>
     </div>
 
-    @push('styles')
-        @include('includes.datatables.styles')
-        @include('includes.choices-js.styles')
-    @endpush
-
-    @push('scripts')
-        @include('includes.datatables.scripts')
-        @include('includes.choices-js.scripts')
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                $('#table').DataTable({
-                    responsive: true,
-                    sort: false
-                });
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function deleteData(id) {
+            Swal.fire({
+                title: "Apakah Anda Yakin?",
+                text: "Data Ini Akan Terhapus Dari Database",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('formDelete' + id).submit();
+                }
             });
-
-            function deleteData(id) {
-                Swal.fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Data Ini Akan Terhapus Dari Database",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('formDelete' + id).submit();
-                    }
-                });
-            }
-        </script>
-    @endpush
+        }
+    </script>
 </body>
 </html>

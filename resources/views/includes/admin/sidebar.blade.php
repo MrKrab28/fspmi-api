@@ -53,6 +53,22 @@
                         <span class="hide-menu">Pengaduan</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('pengeluaran-index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-report-money"></i>
+                        </span>
+                        <span class="hide-menu">Pengeluaran</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('laporan-index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-clipboard-data"></i>
+                        </span>
+                        <span class="hide-menu">Laporan</span>
+                    </a>
+                </li>
 
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
