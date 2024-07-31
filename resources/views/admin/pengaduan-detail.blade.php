@@ -34,13 +34,13 @@
                                                         style="width: 96px;height:96px"></i>{{ $pengaduan->judul }}</h3>
                                             </div>
                                             @if ($pengaduan->status === 'diproses')
-
-                                            <form action="{{ route('pengaduan-update') }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="pengaduan" value="{{ $pengaduan->id }}">
-                                                <button type="submit" class="btn btn-success text-dark ">Selesai</button>
-                                            </form>
+                                                <form action="{{ route('pengaduan-update') }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="pengaduan" value="{{ $pengaduan->id }}">
+                                                    <button type="submit"
+                                                        class="btn btn-success text-dark ">Selesai</button>
+                                                </form>
                                             @endif
 
                                         </div>
@@ -51,8 +51,8 @@
                                             <div class="avatar">
 
                                                 <img src="{{ asset('f/foto-profile/' . $pengaduan->user->foto_profile) }}"
-                                                alt="Avatar" class="rounded-circle user-avatar-md"
-                                                style="height: 100px;width:100px">
+                                                    alt="Avatar" class="rounded-circle user-avatar-md"
+                                                    style="height: 100px;width:100px">
 
 
 
@@ -85,45 +85,46 @@
                                         <div class="card-body p-4">
                                             <h4 class="mb-0">Balasan Pengaduan</h4>
                                             <p class="fw-light mb-4 pb-2"></p>
-                                            @foreach ($pengaduan->balasan as $balasan )
-
-                                            <div class="d-flex flex-start">
-                                                @if($balasan->pengirim == 'anggota')
-                                                <img class="rounded-circle shadow-1-strong me-3"
-                                                    src="{{ asset('f/foto-profile/' . $pengaduan->user->foto_profile) }}"
-                                                    alt="avatar" width="60" height="60" />
-                                                @else
-                                                <img class="rounded-circle shadow-1-strong me-3"
-                                                    src="{{ asset('f/foto-profile/default.png') }}"
-                                                    alt="avatar" width="60" height="60" />
+                                            @forelse ($pengaduan->balasan as $balasan)
+                                                <div class="d-flex flex-start">
+                                                    @if ($balasan->pengirim == 'anggota')
+                                                        <img class="rounded-circle shadow-1-strong me-3"
+                                                            src="{{ asset('f/foto-profile/' . $pengaduan->user->foto_profile) }}"
+                                                            alt="avatar" width="60" height="60" />
+                                                    @else
+                                                        <img class="rounded-circle shadow-1-strong me-3"
+                                                            src="{{ asset('assets/images/profile/user-1.jpg') }}"
+                                                            alt="avatar" width="60" height="60" />
                                                     @endif
                                                     <div>
 
-                                                    @if ($balasan->pengirim == 'anggota')
+                                                        @if ($balasan->pengirim == 'anggota')
+                                                            <h6 class="fw-bold mb-1">{{ $pengaduan->user->nama }}</h6>
+                                                        @else
+                                                            <h6 class="fw-bold mb-1">Admin</h6>
+                                                        @endif
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <p class="mb-0">
+                                                                {{ Carbon\Carbon::parse($balasan->pengaduan->tgl_pengaduan)->isoFormat('DD MMMM YYYY') }}
+                                                                <span
+                                                                    class="badge bg-primary ms-1 timestamp">{{ $balasan->created_at->diffForHumans() }}</span>
+                                                            </p>
 
-                                                    <h6 class="fw-bold mb-1">{{ $pengaduan->user->nama }}</h6>
-                                                    @else
-                                                    <h6 class="fw-bold mb-1">Admin</h6>
-
-                                                    @endif
-                                                    <div class="d-flex align-items-center mb-3">
-                                                        <p class="mb-0">
-                                                                {{ Carbon\Carbon::parse($balasan->pengaduan->tgl_pengaduan)->isoFormat('DD MMMM YYYY')  }}
-                                                            <span class="badge bg-primary ms-1 timestamp">{{ $balasan->created_at->diffForHumans() }}</span>
+                                                        </div>
+                                                        <p class="mb-3">
+                                                            {{ $balasan->isi_balasan }}
                                                         </p>
-
                                                     </div>
-                                                    <p class="mb-3">
-                                                     {{ $balasan->isi_balasan }}
-                                                    </p>
                                                 </div>
-                                            </div>
-                                            <hr>
-                                            @endforeach
+                                                <hr>
+                                            @empty
+                                                <p class="text-center">Belum ada balasan</p>
+                                            @endforelse
                                             <div class="d-flex justify-content-end">
-
                                                 <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">Balas Pesan</button>
+                                                    data-bs-target="#exampleModal">
+                                                    Balas Pesan
+                                                </button>
                                             </div>
                                         </div>
                                         <hr class="my-0" style="height: 1px;" />
