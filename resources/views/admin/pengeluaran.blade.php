@@ -22,7 +22,7 @@
 
                                         <th>No</th>
                                         <th>Keperluan</th>
-                                        <th>jumlah Pengeluaran</th>
+                                        <th>Jumlah Pengeluaran</th>
                                         <th>Tanggal </th>
 
                                         <th></th>
@@ -81,7 +81,7 @@
                     <div class="modal-body">
 
                         <div class="mb-3">
-                            <label for="keperluan" class="form-label">keperluan</label>
+                            <label for="keperluan" class="form-label">Keperluan</label>
                             <input type="text" class="form-control" id="keperluan" name="keperluan" autocomplete="off"
                                 required>
                         </div>
@@ -91,7 +91,7 @@
                                 required>
                         </div>
                         <div class="mb-3">
-                            <label for="tanggal" class="form-label">Tanggal Pembayaran Iuran</label>
+                            <label for="tanggal" class="form-label">Tanggal Pengeluaran</label>
                             <input type="date" class="form-control" id="tanggal" name="tanggal" autocomplete="off"
                                 required>
                         </div>

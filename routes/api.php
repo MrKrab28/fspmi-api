@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController as ApiAuthController;
 use App\Http\Controllers\Api\IuranController as ApiIuranController;
 use App\Http\Controllers\Api\PengaduanController;
+use App\Http\Controllers\Api\PengeluaranController;
 use App\Http\Controllers\Api\UserController as ApiUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('pengaduan/{id}', [PengaduanController::class, 'detail']);
     Route::post('pengaduan', [PengaduanController::class, 'store']);
     Route::post('pengaduan/balas', [PengaduanController::class, 'balas']);
+
+    Route::get('pengeluaran', [PengeluaranController::class, 'get']);
 
     Route::get('profile', [ApiUserController::class, 'index']);
     Route::put('profile/update', [ApiUserController::class, 'update']);

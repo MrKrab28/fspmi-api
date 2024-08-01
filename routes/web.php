@@ -69,10 +69,9 @@ Route::group(['middleware' =>  'auth:admin'], function () {
     Route::delete('pengeluaran/delete/{pengeluaran}', [PengeluaranController::class, 'destroy'])->name('pengeluaran-delete');
 
 
-    Route::get('Laporan', [LaporanController::class, 'index'])->name('laporan-index');
-    Route::get('Laporan/iuran/pdf', [LaporanController::class, 'iuran_pdf'])->name('laporan-iuran');
-    Route::get('Laporan/pengeluaran/pdf', [LaporanController::class, 'Pengeluaran_pdf'])->name('laporan-pengeluaran');
-
+    Route::get('laporan', [LaporanController::class, 'index'])->name('laporan-index');
+    Route::get('laporan/iuran/pdf', [LaporanController::class, 'iuran_pdf'])->name('laporan-iuran');
+    Route::get('laporan/pengeluaran/pdf', [LaporanController::class, 'Pengeluaran_pdf'])->name('laporan-pengeluaran');
 });
 
 
@@ -92,7 +91,6 @@ Route::group(['middleware' =>  'auth:user', 'prefix' => 'user'], function () {
 
     Route::get('buat-pengaduan', [UserPengaduanController::class, 'buatPengaduan'])->name('user-buat-pengaduan');
     Route::post('balas-pengaduan', [UserPengaduanController::class, 'balasPengaduan'])->name('user-balas-pengaduan');
-
 });
 Route::get('/user', function () {
     return view('admin.anggota');

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,11 @@
     <title>Document</title>
     <style>
         /* Resetting some default styles */
-        body, h4, table, th, td {
+        body,
+        h4,
+        table,
+        th,
+        td {
             margin: 0;
             padding: 0;
             border: 0;
@@ -32,7 +37,7 @@
         .card {
             background: #fff;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin-bottom: 20px;
         }
@@ -56,7 +61,8 @@
             border-collapse: collapse;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -109,92 +115,51 @@
             display: inline;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .card-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        .text-center {
+            text-align: center;
+        }
 
-            .table-responsive {
-                overflow-x: auto;
-            }
+        .mt-0 {
+            margin-top: 0;
         }
     </style>
 </head>
+
 <body>
-
-    <div class="container-fluid content-inner mt-2">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="mb-0">Laporan Iuran</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="table" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Anggota</th>
-                                <th>Total Iuran</th>
-                                <th>Tanggal Pembayaran</th>
-                                <th>Status Setoran Bulan Ini</th>
-                                <th>No. HP</th>
-                               
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($iuran as $iuran)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $iuran->user->nama }}</td>
-                                    <td>{{ $iuran->items->sum('nominal') }}</td>
-                                    <td>{{ $iuran->items[0]->tgl_bayar }}</td>
-                                    <td>{{ $iuran->status }}</td>
-                                    <td>{{ $iuran->user->no_hp }}</td>
-
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="text-center">
+        <img src="{{ asset('assets/images/logos/LOGOFSPMI.png') }}" width="200" alt="">
+        <h5 class="mt-0">Federasi Serikat Pekerja Metal Indonesia</h5>
     </div>
 
-    @push('styles')
-        @include('includes.datatables.styles')
-        @include('includes.choices-js.styles')
-    @endpush
+    <h3 style="margin: 0">Laporan Iuran</h3>
+    {{-- <p class="mt-0">Tanggal: {{ Carbon\Carbon::now()->isoFormat('D MMMM YYYY') }}</p> --}}
 
-    @push('scripts')
-        @include('includes.datatables.scripts')
-        @include('includes.choices-js.scripts')
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                $('#table').DataTable({
-                    responsive: true,
-                    sort: false
-                });
-            });
-
-            function deleteData(id) {
-                Swal.fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Data Ini Akan Terhapus Dari Database",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('formDelete' + id).submit();
-                    }
-                });
-            }
-        </script>
-    @endpush
+    <table id="table" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Anggota</th>
+                <th>No. HP</th>
+                <th>Total Iuran</th>
+                <th>Pembayaran Terakhir</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($iuran as $iuran)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $iuran->user->nama }}</td>
+                    <td>{{ $iuran->user->no_hp }}</td>
+                    <td>Rp. {{ number_format($iuran->items->sum('nominal')) }}</td>
+                    <td>{{ Carbon\Carbon::parse($iuran->items[0]->tgl_bayar)->isoFormat('MMMM YYYY') }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">Tidak ada data</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 </body>
+
 </html>

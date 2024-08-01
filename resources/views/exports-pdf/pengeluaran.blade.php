@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,11 @@
     <title>Document</title>
     <style>
         /* Reset some default styles */
-        body, h4, table, th, td {
+        body,
+        h4,
+        table,
+        th,
+        td {
             margin: 0;
             padding: 0;
             border: 0;
@@ -32,7 +37,7 @@
         .card {
             background: #fff;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin-bottom: 20px;
         }
@@ -88,7 +93,8 @@
             margin-top: 20px;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -107,71 +113,46 @@
             text-align: center;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .card-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        .mt-0 {
+            margin-top: 0;
         }
     </style>
 </head>
+
 <body>
-
-    <div class="container-fluid content-inner mt-2">
-        <div class="card">
-            <div class="card-header">
-                <div class="header-title">
-                    <h4 class="mb-0">Daftar Pengeluaran</h4>
-                </div>
-                
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="table" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Keperluan</th>
-                                <th>Jumlah Pengeluaran</th>
-                                <th>Tanggal</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($pengeluaran as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->keperluan }}</td>
-                                    <td>Rp. {{ number_format($item->jumlah) }}</td>
-                                    <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}</td>
-
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="text-center">
+        <img src="{{ asset('assets/images/logos/LOGOFSPMI.png') }}" width="200" alt="">
+        <h5 class="mt-0">Federasi Serikat Pekerja Metal Indonesia</h5>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function deleteData(id) {
-            Swal.fire({
-                title: "Apakah Anda Yakin?",
-                text: "Data Ini Akan Terhapus Dari Database",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, Hapus!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('formDelete' + id).submit();
-                }
-            });
-        }
-    </script>
+    <h3 style="margin: 0">Laporan Pengeluaran</h3>
+    {{-- <p class="mt-0">Tanggal: {{ Carbon\Carbon::now()->isoFormat('D MMMM YYYY') }}</p> --}}
+
+
+    <table id="table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Keperluan</th>
+                <th>Jumlah Pengeluaran</th>
+                <th>Tanggal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($pengeluaran as $item)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->keperluan }}</td>
+                    <td>Rp. {{ number_format($item->jumlah) }}</td>
+                    <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4" class="text-center">Tidak ada data</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 </body>
+
 </html>
