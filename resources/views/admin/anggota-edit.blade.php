@@ -12,8 +12,7 @@
                         <div class="card-body">
                             <div class="text-center mb-4">
                                 <img src="{{ asset('f/foto-ktp/' . $user->foto_ktp) }}"
-                                    style="height: 150px;width:150px;border-radius:50%" alt=""
-                                    class="pict-oval">
+                                    style="height: 150px;width:150px;border-radius:50%" alt="" class="pict-oval">
                             </div>
                         </div>
                     </div>
@@ -42,20 +41,22 @@
                                     <input type="email" class="form-control" id="nama" name="email"
                                         value="{{ $user->email }}" autocomplete="off" required>
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label for="" class="input-group-text" id="basic-addon1">Jenis Kelamin</label>
-                                    <div class="form-check form-check-inline ms-3">
-                                        <input class="form-check-input" id="inlineRadio1"type="radio" name="jk"
-                                            value="P" {{ $user->jk == 'P' ? 'checked' : '' }}>
-                                        <label for="inlineRadio1"> Perempuan</label>
+                                <div class="mb-3">
+                                    <label class="form-label">Jenis Kelamin</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="jk" value="L"
+                                            id="jkL" {{ $user->jk == 'L' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="jkL">
+                                            Laki-laki
+                                        </label>
                                     </div>
-                                    <div class="form-check form-check-inline ms-5">
-                                        <input class="form-check-input" id="inlineRadio2"type="radio" name="jk"
-                                            value="L" {{ $user->jk == 'L' ? 'checked' : '' }}>
-                                        <label for="inlineRadio2"> Laki - Laki</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="jk" value="P"
+                                            id="jkP" {{ $user->jk == 'P' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="jkP">
+                                            Perempuan
+                                        </label>
                                     </div>
-
-
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="mb-0" for="no_hp">No.Hp</label>
@@ -76,7 +77,8 @@
                                     <label class="mb-0" for="password">Password</label>
                                     <input type="password" class="form-control" id="password" value=""
                                         name="password">
-                                    <small id="passHelp" class="form-text text-muted">Kosongkan jika tidak ingin mengganti
+                                    <small id="passHelp" class="form-text text-muted">Kosongkan jika tidak ingin
+                                        mengganti
                                         password</small>
                                 </div>
                         </div>

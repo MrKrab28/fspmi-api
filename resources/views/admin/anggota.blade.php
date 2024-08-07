@@ -36,9 +36,9 @@
 
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $user->nama }}</td>
-                                            @if ($user->jk = 'L')
-                                                <td>Laki - Laki</td>
-                                            @elseif ($user->jk = 'P')
+                                            @if ($user->jk == 'L')
+                                                <td>Laki-laki</td>
+                                            @elseif ($user->jk == 'P')
                                                 <td>Perempuan</td>
                                             @endif
 
@@ -101,7 +101,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="jk" value="L" id="jkL">
                                 <label class="form-check-label" for="jkL">
-                                    Laki - Laki
+                                    Laki-laki
                                 </label>
                             </div>
                             <div class="form-check">
