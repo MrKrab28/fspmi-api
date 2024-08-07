@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AnggotaController;
@@ -41,6 +42,9 @@ Route::group(['middleware' =>  'auth:admin'], function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // PROFIL ADMIN
+    Route::get('profile-admin/{admin}', [AdminController::class, 'edit'])->name('admin-profile');
+    Route::put('profile-admin/{admin}/update', [AdminController::class, 'update'])->name('admin-profile.update');
 
     Route::get('anggota', [AnggotaController::class, 'index'])->name('anggota-index');
     Route::post('anggota/add', [AnggotaController::class, 'store'])->name('anggota-store');
