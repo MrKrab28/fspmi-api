@@ -33,33 +33,8 @@
                     <div class="card-body">
                         <div class="row align-items-start">
                             <div class="col-8">
-                                <h5 class="card-title mb-9 fw-semibold"> Jumlah Pengaduan </h5>
-                                <h4 class="fw-semibold mb-3">{{ $pengaduan }}</h4>
-                                <div class="d-flex align-items-center pb-1">
-
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="d-flex justify-content-end">
-                                    <div
-                                        class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-cash-banknote fs-8"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-start">
-                            <div class="col-8">
-                                <h5 class="card-title mb-9 fw-semibold"> Total Iuran </h5>
-                                <h4 class="fw-semibold mb-3">Rp. {{ number_format($iuran) }}</h4>
+                                <h5 class="card-title mb-9 fw-semibold"> Pengaduan Proses </h5>
+                                <h4 class="fw-semibold mb-3">{{ $pengaduanProses }}</h4>
                                 <div class="d-flex align-items-center pb-1">
 
                                 </div>
@@ -75,11 +50,81 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-start">
+                            <div class="col-8">
+                                <h5 class="card-title mb-9 fw-semibold"> Pengaduan Selesai </h5>
+                                <h4 class="fw-semibold mb-3">{{ $pengaduanSelesai }}</h4>
+                                <div class="d-flex align-items-center pb-1">
 
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-end">
+                                    <div
+                                        class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-mail fs-8"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
 
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-start">
+                            <div class="col-8">
+                                <h5 class="card-title mb-9 fw-semibold"> Total Iuran </h5>
+                                <h4 class="fw-semibold mb-3">Rp. {{ number_format($iuran) }}</h4>
+                                <div class="d-flex align-items-center pb-1">
+
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-end">
+                                    <div
+                                        class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-cash-banknote fs-8"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-start">
+                            <div class="col-8">
+                                <h5 class="card-title mb-9 fw-semibold"> Saldo Akhir </h5>
+                                <h4 class="fw-semibold mb-3">Rp. {{ number_format($saldo) }}</h4>
+                                <div class="d-flex align-items-center pb-1">
+
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-end">
+                                    <div
+                                        class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-cash fs-8"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {{-- <div class="col-lg-4">
+            {{-- <div class="col-lg-3">
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- Yearly Breakup -->
