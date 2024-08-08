@@ -9,10 +9,12 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="card">
+                        <div class="card-header">
+                            <h4>Kartu Tanda Penduduk</h4>
+                        </div>
                         <div class="card-body">
                             <div class="text-center mb-4">
-                                <img src="{{ asset('f/foto-ktp/' . $user->foto_ktp) }}"
-                                    style="height: 150px;width:150px;border-radius:50%" alt="" class="pict-oval">
+                                <img src="{{ asset('f/foto-ktp/' . $user->foto_ktp) }}" alt="" class="w-100 rounded">
                             </div>
                         </div>
                     </div>
@@ -21,6 +23,9 @@
 
                 <div class="col-lg-5">
                     <div class="card me-0">
+                        <div class="card-header">
+                            <h4>Edit Anggota</h4>
+                        </div>
                         <div class="card-body">
                             <form action="{{ route('anggota-update', $user->id) }}" method="POST"
                                 enctype="multipart/form-data">
