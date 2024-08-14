@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AnggotaController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\IuranController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PengaduanController;
@@ -76,6 +77,14 @@ Route::group(['middleware' =>  'auth:admin'], function () {
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan-index');
     Route::get('laporan/iuran/pdf', [LaporanController::class, 'iuran_pdf'])->name('laporan-iuran');
     Route::get('laporan/pengeluaran/pdf', [LaporanController::class, 'Pengeluaran_pdf'])->name('laporan-pengeluaran');
+
+
+    // FAQ
+    Route::get('faq', [FaqController::class, 'index'])->name('faq');
+    Route::post('faq/add', [FaqController::class, 'store'])->name('faq.store');
+    Route::get('faq/edit/{faq}', [FaqController::class, 'edit'])->name('faq.edit');
+    Route::put('faq/update/{faq}', [FaqController::class, 'update'])->name('faq.update');
+    Route::delete('faq/delete/{faq}', [FaqController::class, 'destroy'])->name('faq.delete');
 });
 
 

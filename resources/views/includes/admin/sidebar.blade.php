@@ -62,6 +62,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('faq') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-cloud"></i>
+                        </span>
+                        <span class="hide-menu">FAQ</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('laporan-index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-clipboard-data"></i>
