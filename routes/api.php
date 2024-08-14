@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController as ApiAuthController;
+use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\IuranController as ApiIuranController;
 use App\Http\Controllers\Api\PengaduanController;
 use App\Http\Controllers\Api\PengeluaranController;
@@ -42,4 +43,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('profile/update', [ApiUserController::class, 'update']);
 
     Route::post('logout', [ApiAuthController::class, 'logout']);
+
+    Route::get('faq', [FaqController::class, 'index']);
 });
