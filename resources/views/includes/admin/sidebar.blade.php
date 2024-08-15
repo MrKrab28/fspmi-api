@@ -42,7 +42,7 @@
                         <span>
                             <i class="ti ti-cash"></i>
                         </span>
-                        <span class="hide-menu">Iuran</span>
+                        <span class="hide-menu">Data Iuran</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

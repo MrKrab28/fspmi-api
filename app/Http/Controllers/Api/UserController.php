@@ -13,19 +13,6 @@ use App\Http\Resources\IuranResource;
 
 class UserController extends Controller
 {
-
-    public function index(Request $request){
-
-        $user = User::find($request->user()->id);
-        return response()->json([
-            'detailUser' => new UserResource($user)
-        ], 200);
-
-    }
-
-
-
-
     public function update(Request $request)
     {
         $user = User::find($request->user()->id);
@@ -35,8 +22,7 @@ class UserController extends Controller
         $user->nama = $request->nama;
         $user->no_hp = $request->no_hp;
         $user->jk = $request->jk;
-        if($request->password){
-
+        if ($request->password) {
             $user->password = bcrypt($request->password);
         }
 
@@ -50,7 +36,7 @@ class UserController extends Controller
         if ($foto_ktp) {
 
             File::delete(public_path('f/foto-ktp/' . $user->foto_ktp));
-            $filename = 'user-' . time() . '-ktp'. '.' . $foto_ktp->extension();
+            $filename = 'user-' . time() . '-ktp' . '.' . $foto_ktp->extension();
             $user->foto_ktp = $filename;
             $foto_ktp->move(public_path('f/foto-ktp'), $filename);
         }

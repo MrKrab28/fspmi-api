@@ -39,10 +39,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('pengeluaran', [PengeluaranController::class, 'get']);
 
-    Route::get('profile', [ApiUserController::class, 'index']);
-    Route::put('profile/update', [ApiUserController::class, 'update']);
+    Route::get('faq', [FaqController::class, 'get']);
+
+    Route::put('profile', [ApiUserController::class, 'update']);
 
     Route::post('logout', [ApiAuthController::class, 'logout']);
-
-    Route::get('faq', [FaqController::class, 'index']);
 });

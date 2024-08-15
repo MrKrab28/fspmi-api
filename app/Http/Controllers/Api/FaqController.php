@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
-    public function index(){
+    public function get()
+    {
         $faq = Faq::all();
-        return response()->json(['message' => 'success','daftarFaq' => $faq]);
+        return response()->json(['message' => 'success', 'daftarFaq' => $faq]);
     }
 }
