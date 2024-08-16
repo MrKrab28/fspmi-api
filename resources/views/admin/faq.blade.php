@@ -12,9 +12,8 @@
                         <button type="submit" class="btn btn-primary " data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Tambah Data</button>
                     </div>
-                    <div class="card-body text-nowrap">
-
-                        <div class="table-reponsive">
+                    <div class="card-body">
+                        <div class="table-reponsive text-wrap">
                             {{-- <table id="table" class="table table-striped mt-5" data-toggle="data-table"> --}}
                             <table id="table" class="table table-hover mt-5" style="width: 100%">
                                 <thead>
@@ -105,7 +104,6 @@
     <script>
         $(document).ready(function() {
             $('#table').DataTable({
-                responsive: true,
                 sort: false
             });
         });
