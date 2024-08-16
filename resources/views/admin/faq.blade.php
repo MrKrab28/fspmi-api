@@ -36,14 +36,7 @@
                                             <td>{{ $faq->pertanyaan }}</td>
                                             <td>{{ $faq->jawaban }}</td>
 
-                                            </td>
-
                                             <td class="text-center">
-                                                <button class="btn btn-primary btn-sm"
-                                                    onclick="document.location.href = '{{ route('faq.edit', $faq->id) }}'">
-                                                    <i class="ti ti-pencil"></i>
-                                                </button>
-
                                                 <form id="formDelete{{ $faq->id }}"
                                                     action="{{ route('faq.delete', $faq->id) }}" class="d-inline"
                                                     method="POST">
@@ -90,8 +83,7 @@
 
                         <div class="mb-3">
                             <label for="jawaban" class="form-label">Jawaban</label>
-                            <input type="text" class="form-control" id="jawaban" name="jawaban" autocomplete="off"
-                                required>
+                            <textarea class="form-control" id="jawaban" name="jawaban" rows="3" autocomplete="off" required></textarea>
                         </div>
 
                         <div class="modal-footer">
