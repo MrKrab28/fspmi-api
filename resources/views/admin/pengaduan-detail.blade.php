@@ -13,7 +13,7 @@
                                     <div class="aside-header">
                                         <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse"
                                             type="button"><span class="icon"></span></button><span class="title"><i
-                                                class="ti ti-mail"></i>Pengaduan</span>
+                                                class="ti ti-mail me-1"></i>Pengaduan</span>
                                         <p class="description">{{ $pengaduan->user->email }}</p>
                                     </div>
                                     <div class="aside-compose">
@@ -30,7 +30,7 @@
                                         <div class="title d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
 
-                                                <h3> <i class="ti ti-mail-opened"
+                                                <h3> <i class="ti ti-mail-opened me-2"
                                                         style="width: 96px;height:96px"></i>{{ $pengaduan->judul }}</h3>
                                             </div>
                                             @if ($pengaduan->status === 'diproses')
@@ -63,7 +63,7 @@
                                             </div>
                                         </div>
                                         <div class="date">
-                                            {{ Carbon\Carbon::parse($pengaduan->created_at)->isoFormat('D MMMM YYYY, HH:mm::ss') }}
+                                            {{ Carbon\Carbon::parse($pengaduan->created_at)->isoFormat('D MMMM YYYY, HH:mm') }}
                                         </div>
                                     </div>
                                 </div>

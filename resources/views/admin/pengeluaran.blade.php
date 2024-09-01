@@ -36,7 +36,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->keperluan }}</td>
                                             <td>Rp. {{ number_format($item->jumlah) }}</td>
-                                            <td>{{ $item->tanggal }}</td>
+                                            <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') }}</td>
 
                                             <td class="text-center">
 

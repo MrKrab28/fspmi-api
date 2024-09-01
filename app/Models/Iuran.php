@@ -18,7 +18,7 @@ class Iuran extends Model
 
     public function items(): HasMany
     {
-        return $this->hasMany(IuranItem::class, 'id_iuran')->orderby('tgl_bayar');
+        return $this->hasMany(IuranItem::class, 'id_iuran');
     }
 
     public function user()
@@ -29,12 +29,12 @@ class Iuran extends Model
     public function status(): Attribute
     {
         return Attribute::make(
-            get: function() {
+            get: function () {
                 $a = $this->items->sortByDesc('tgl_bayar')->first();
-                if($a){
+                if ($a) {
                     $bulan = Carbon::parse($a->tgl_bayar)->month;
                     $bulanIni = Carbon::today()->month;
-                    if($bulan == $bulanIni){
+                    if ($bulan == $bulanIni) {
                         return 'Terbayar';
                     }
                 }
@@ -42,5 +42,4 @@ class Iuran extends Model
             }
         );
     }
-
 }

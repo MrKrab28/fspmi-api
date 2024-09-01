@@ -151,7 +151,8 @@
                     <td>{{ $iuran->user->nama }}</td>
                     <td>{{ $iuran->user->no_hp }}</td>
                     <td>Rp. {{ number_format($iuran->items->sum('nominal')) }}</td>
-                    <td>{{ Carbon\Carbon::parse($iuran->items[0]->tgl_bayar)->isoFormat('MMMM YYYY') }}</td>
+                    <td>{{ Carbon\Carbon::parse($iuran->items->sortByDesc('tgl_bayar')->first()->tgl_bayar)->isoFormat('MMMM YYYY') }}
+                    </td>
                 </tr>
             @empty
                 <tr>

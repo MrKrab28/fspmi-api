@@ -23,6 +23,7 @@
                                         <th>No</th>
                                         <th>Nama Anggota</th>
                                         <th>Judul Pengaduan</th>
+                                        <th>Status</th>
                                         <th>Tanggal Pengaduan</th>
                                         <th></th>
 
@@ -36,6 +37,14 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->user->nama }}</td>
                                             <td>{{ Str::limit($item->judul, 30) }}</td>
+
+                                            <td>
+                                                @if ($item->status == 'selesai')
+                                                    <span class="badge text-bg-success">{{ ucfirst($item->status) }}</span>
+                                                @else
+                                                    <span class="badge text-bg-warning">{{ ucfirst($item->status) }}</span>
+                                                @endif
+                                            </td>
                                             <td>{{ Carbon\Carbon::parse($item->tgl_pengaduan)->isoFormat('DD MMMM YYYY') }}
                                             </td>
 

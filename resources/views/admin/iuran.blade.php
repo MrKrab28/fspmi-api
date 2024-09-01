@@ -38,12 +38,18 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $iuran->user->nama }}</td>
                                             <td>Rp. {{ number_format($iuran->items->sum('nominal')) }}</td>
-                                            <td>{{ $iuran->items[0]->tgl_bayar ?? '-' }}</td>
+                                            <td>
+                                                @if ($iuran->items->count())
+                                                    {{ Carbon\Carbon::parse($iuran->items->sortByDesc('tgl_bayar')->first()->tgl_bayar)->isoFormat('DD MMMM YYYY') }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if ($iuran->status == 'Terbayar')
-                                                    <span class="text-success">{{ $iuran->status }}</span>
+                                                    <span class="badge text-bg-success">{{ $iuran->status }}</span>
                                                 @else
-                                                    <span class="text-danger">{{ $iuran->status }}</span>
+                                                    <span class="badge text-bg-danger">{{ $iuran->status }}</span>
                                                 @endif
                                             </td>
                                             <td>{{ $iuran->user->no_hp }}</td>

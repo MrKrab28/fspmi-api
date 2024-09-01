@@ -19,7 +19,7 @@ class IuranController extends Controller
 
         $data = [
             'daftarAnggota' => User::all(),
-            'daftariuran' => Iuran::all()
+            'daftariuran' => Iuran::get()
         ];
 
         return view('admin.iuran', $data);
@@ -65,6 +65,4 @@ class IuranController extends Controller
         $iuran->delete();
         return redirect()->back()->with('success', 'Berhasil Menghapus Data');
     }
-
-    
 }

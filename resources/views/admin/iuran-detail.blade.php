@@ -29,7 +29,8 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>Rp. {{ number_format($iuran->nominal) }}</td>
-                                            <td>{{ $iuran->tgl_bayar }}</td>
+                                            <td>{{ Carbon\Carbon::parse($iuran->tgl_bayar)->isoFormat('DD MMMM YYYY') }}
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
