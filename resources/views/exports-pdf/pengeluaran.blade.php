@@ -60,32 +60,6 @@
             margin: 0;
         }
 
-        /* Button styles */
-        .btn {
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: #fff;
-        }
-
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 12px;
-        }
-
         /* Table styles */
         .table {
             width: 100%;
@@ -116,6 +90,19 @@
         .mt-0 {
             margin-top: 0;
         }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        .my-0 {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .sekret {
+            font-size: 12px;
+        }
     </style>
 </head>
 
@@ -123,6 +110,12 @@
     <div class="text-center">
         <img src="{{ asset('assets/images/logos/LOGOFSPMI.png') }}" width="200" alt="">
         <h5 class="mt-0">Federasi Serikat Pekerja Metal Indonesia</h5>
+        <div class="sekret">
+            <p class="my-0">Sekretariat : Perumahan Depaq Almarhama blok A17 No. 5 Biringkanaya, Kota Makassar</p>
+            <p class="mt-0">
+                Email: pcmakassarraya@gmail.com
+            </p>
+        </div>
     </div>
 
     <h3 style="margin: 0">Laporan Pengeluaran</h3>
@@ -152,6 +145,38 @@
                 </tr>
             @endforelse
         </tbody>
+    </table>
+
+    <p style="text-align: right">
+        Makassar, {{ Carbon\Carbon::now()->isoFormat('D MMMM YYYY') }}
+    </p>
+
+    <br>
+
+    <table style="width: 100%">
+        <tr>
+            <td colspan="2" class="text-center"><b>PIMPINAN CABANG</b></b></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center"><b>SERIKAT PEKERJA ANEKA INDUSTRI</b></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center"><b>FEDERASI SERIKAT PEKERJA METAL INDONESIA</b></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center"><b>MAKASSAR RAYA</b></td>
+        </tr>
+        <tr>
+            <td style="height: 100px"></td>
+        </tr>
+        <tr>
+            <td class="text-center" style="font-weight: bold; text-decoration: underline">TAUFIK SM</td>
+            <td class="text-center" style="font-weight: bold; text-decoration: underline">MUH AWAL</td>
+        </tr>
+        <tr>
+            <td class="text-center">Ketua</td>
+            <td class="text-center">Sekretaris</td>
+        </tr>
     </table>
 </body>
 
