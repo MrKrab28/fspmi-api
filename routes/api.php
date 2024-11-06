@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController as ApiAuthController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FaqController;
-use App\Http\Controllers\Api\IuranController as ApiIuranController;
+use App\Http\Controllers\Api\IuranController;
 use App\Http\Controllers\Api\PengaduanController;
 use App\Http\Controllers\Api\PengeluaranController;
-use App\Http\Controllers\Api\UserController as ApiUserController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', [ApiAuthController::class, 'authenticate']);
-Route::post('register', [ApiAuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'authenticate']);
+Route::post('register', [AuthController::class, 'register']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('user', function (Request $request) {
         return response()->json([
@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         ]);
     });
 
-    Route::get('iuran-user', [ApiIuranController::class, 'get']);
+    Route::get('iuran-user', [IuranController::class, 'get']);
 
     Route::get('pengaduan', [PengaduanController::class, 'get']);
     Route::get('pengaduan/{id}', [PengaduanController::class, 'detail']);
@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('faq', [FaqController::class, 'get']);
 
-    Route::put('profile', [ApiUserController::class, 'update']);
+    Route::patch('password', [UserController::class, 'update']);
 
-    Route::post('logout', [ApiAuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout']);
 });

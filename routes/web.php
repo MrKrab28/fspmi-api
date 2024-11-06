@@ -12,9 +12,6 @@ use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\PengeluaranController;
 use App\Http\Controllers\User\PengaduanController as UserPengaduanController;
 use App\Http\Controllers\User\IuranController as UserIuranController;
-use App\Models\Laporan;
-use App\Models\Pengaduan;
-use App\Models\Pengeluaran;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +63,6 @@ Route::group(['middleware' =>  'auth:admin'], function () {
     Route::post('balas-pengaduan', [PengaduanController::class, 'balasPengaduan'])->name('balas-pengaduan');
 
     Route::put('pengaduan/selesai', [PengaduanController::class, 'selesaikanPengaduan'])->name('pengaduan-update');
-
-
 
     Route::get('pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran-index');
     Route::post('pengeluaran', [PengeluaranController::class, 'store'])->name('pengeluaran-store');
